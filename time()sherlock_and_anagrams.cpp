@@ -45,19 +45,11 @@ int main()
         {
             for(i=0;i<=a[z].l-d;i++)
             {
-                string s1="";
-                for(int m=i;m<i+d;m++)
-                {
-                    s1=s1+a[z].s[m];
-                }
+                string s1=a[z].s.substr(i,i+d);
                 j=i+1;
                 for(int k=j;k<=a[z].l-d;k++)
                 {
-                    string s2="";
-                    for(int n=k;n<k+d;n++)
-                    {
-                        s2=s2+a[z].s[n];
-                    }
+                    string s2=a[z].s.substr(k,k+d);
                     if(check(s1,s2,d)==true)
                         count++;
                 }    
