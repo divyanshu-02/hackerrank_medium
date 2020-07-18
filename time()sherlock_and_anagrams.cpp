@@ -46,7 +46,7 @@ int main()
             for(i=0;i<=a[z].l-d;i++)
             {
                 string s1="";
-                for(int m=i;m<=i+d;m++)
+                for(int m=i;m<i+d;m++)
                 {
                     s1=s1+a[z].s[m];
                 }
@@ -54,7 +54,7 @@ int main()
                 for(int k=j;k<=a[z].l-d;k++)
                 {
                     string s2="";
-                    for(int n=k;n<=k+d;n++)
+                    for(int n=k;n<k+d;n++)
                     {
                         s2=s2+a[z].s[n];
                     }
