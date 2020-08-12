@@ -1,0 +1,109 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<string> split_string(string);
+
+void reverse1(long int a[],long int n,long int j1,long int j2)
+{
+    long int i;
+    long int t;
+    for(i=0;i<=(j2-j1)/2;i++)
+    {
+        t=a[j1+i];
+        a[j1+i]=a[j2-i];
+        a[j2-i]=t;
+    }
+}
+bool issorted(long int a[],long int n)
+{
+    long int i;
+    for(i=0;i<n-1;i++)
+    {
+        if(a[i]>a[i+1])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool issorted1(long int a[],long int n,long int j1,long int j2)
+{
+        long int i;
+        long int t=a[j1];
+        a[j1]=a[j2];
+        a[j2]=t;
+        if(issorted(a,n)==true)
+        {
+            return true;
+        }
+        return false;
+}
+bool issorted2(long int a[],long int n,long int j1,long int j2)
+{
+    long int i;
+    long int t=j2-j1;
+    for(i=0;i<=t;i++)
+    {
+        reverse1(a,n,j1,j2);
+        if(issorted(a,n)==true)
+            return true;
+    }
+    return false;
+
+}
+int main()
+{
+    long int n;
+    cin>>n;
+    long int i,a[n],b[n];
+    for(i=0;i<n;i++)
+    {
+        cin>>a[i];
+        b[i]=a[i];
+    }
+    if(issorted(a,n)==true)
+    {
+        cout<<"yes"<<endl;
+    }
+    else
+    {
+        int j1=0,j2=0;
+        for(i=0;i<n-1;i++)
+        {
+            if(a[i]>a[i+1])
+            {
+                j1=i;
+                break;
+            }
+        }
+        for(i=n-1;i>=1;i--)
+        {
+            if(a[i]<a[i-1])
+            {
+                j2=i;
+                break;
+            }
+        }
+        if(issorted1(b,n,j1,j2)==true)
+        {
+            cout<<"yes"<<endl;
+            cout<<"swap"<<" "<<j1+1<<" "<<j2+1<<endl;
+        }
+        else
+        {
+            if(issorted2(a,n,j1,j2)==true)
+            {
+                cout<<"yes"<<endl;
+                cout<<"reverse"<<" "<<j1+1<<" "<<j2+1;
+            }
+            else
+            {
+                cout<<"no";
+            }
+        }
+
+    }
+    return 0;
+}
