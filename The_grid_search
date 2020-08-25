@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct grid
+{
+    int R,C,r,c;
+    int p[1001][1001],g[1001][1001];
+};
+
+bool check(int p[1001][1001],int g[1001][1001],int l,int m,int r,int c)
+{
+    int i,j,k;
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            if(p[l+i][m+j]!=g[i][j])
+                return false;
+        }
+    }
+    return true;
+}
+
+bool gridsearch(grid G)
+{
+    int i,j,l,m;
+    for(i=0;i<G.R;i++)
+    {
+        for(j=0;j<G.C;j++)
+        {
+            if(G.p[i][j]==G.g[0][0]&&i+G.r<G.R&&j+G.c<G.C)
+            {
+                if(check(G.p,G.g,i,j,G.r,G.c)==true)
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+int main()
+{
+    int t;
+    cin>>t;
+    grid G[t];
+    int i,j,k;
+    for(i=0;i<t;i++)
+    {
+        cin>>G[i].R>>G[i].C;
+        for(j=0;j<G[i].R;j++)
+        {
+            for(k=0;k<G[i].C;k++)
+            {
+                cin>>G[i].p[j][k];
+            }
+        }
+        cin>>G[i].r>>G[i].c;
+        for(j=0;j<G[i].r;j++)
+        {
+            for(k=0;k<G[i].c;k++)
+            {
+                cin>>G[i].g[j][k];
+            }
+        }
+    }
+    for(i=0;i<t;i++)
+    {
+        if(gridsearch(G[i])==true)
+            cout<<"YES"<<endl;
+        else
+            cout<<"NO";
+    }
+    return 0;
+}
